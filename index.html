@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon-32x32.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg"></div>
+    <main class="main">
+        <header class="header">
+            <h1 class="title">TODO</h1>
+            <button class="light-dark-mode">
+                <img class="dark-mode-icon" src="images/icon-moon.svg" alt="Dark Mode Icon">
+                <img class="light-mode-icon hidden" src="images/icon-sun.svg" alt="Ligt Mode Icon">
+            </button>
+        </header>
+        <section class="create-task">
+            <div class="checkbox-wrapper disabled-hover">
+                <input type="checkbox" class="create-todo" id="create-todo" name="create-todo">
+            </div>
+            <input type="text" class="create-todo-name" id="create-todo-name" name="create-todo-name" placeholder="Create a new todo...">
+        </section>
+        <section class="todo-list">
+            <div class="todo-task bottom-border not-completed" data-id="1">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="todo-task-checkbox" name="todo-task-checkbox">
+                </div>
+                <p class="todo-task-description">Complete online JavaScript course</p>
+                <button class="remove-task-btn">
+                    <img src="images/icon-cross.svg" alt="Remove Icon" class="remove-btn-img">
+                </button>
+            </div>
+
+            <div class="todo-task bottom-border not-completed" data-id="2">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="todo-task-checkbox" name="todo-task-checkbox">
+                </div>
+                <p class="todo-task-description">Jog around the park 3x</p>
+                <button class="remove-task-btn">
+                    <img src="images/icon-cross.svg" alt="Remove Icon" class="remove-btn-img">
+                </button>
+            </div>
+
+            <div class="todo-task bottom-border not-completed" data-id="3">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="todo-task-checkbox" name="todo-task-checkbox">
+                </div>
+                <p class="todo-task-description">10 minutes meditation</p>
+                <button class="remove-task-btn">
+                    <img src="images/icon-cross.svg" alt="Remove Icon" class="remove-btn-img">
+                </button>
+            </div>
+
+            <div class="todo-task bottom-border not-completed" data-id="4">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="todo-task-checkbox" name="todo-task-checkbox">
+                </div>
+                <p class="todo-task-description">Read for 1 hour</p>
+                <button class="remove-task-btn">
+                    <img src="images/icon-cross.svg" alt="Remove Icon" class="remove-btn-img">
+                </button>
+            </div>
+
+            <div class="todo-task bottom-border not-completed" data-id="5">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="todo-task-checkbox" name="todo-task-checkbox">
+                </div>
+                <p class="todo-task-description">Pick up groceries</p>
+                <button class="remove-task-btn">
+                    <img src="images/icon-cross.svg" alt="Remove Icon" class="remove-btn-img">
+                </button>
+            </div>
+
+            <div class="todo-task bottom-border not-completed" data-id="6">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="todo-task-checkbox" name="todo-task-checkbox">
+                </div>
+                <p class="todo-task-description">Complete Todo App on Frontend Mentor</p>
+                <button class="remove-task-btn">
+                    <img src="images/icon-cross.svg" alt="Remove Icon" class="remove-btn-img">
+                </button>
+            </div>
+        </section>
+        <div class="task-count">
+            <p class="tasks-left">5 items left</p>
+            <button class="clear-btn">Clear Completed</button>
+        </div>
+        <footer class="footer">
+            <p class="desktop-tasks-left tasks-left">5 items left</p>
+            <ul class="task-filter">
+                <li class="active all-tasks">All</li>
+                <li class="active-tasks">Active</li>
+                <li class="completed-tasks">Completed</li>
+            </ul>
+            <button class="desktop-clear-btn clear-btn">Clear Completed</button>
+        </footer>
+        <div class="drag-and-drop">
+            <p class="drag-and-drop-p">Drag and drop to reorder list</p>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
