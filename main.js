@@ -120,7 +120,7 @@ const clickHandler = (ev) => {
 }
 taskFilter.addEventListener("click", clickHandler);
 
-
+let indexOfDiv;
 todoList.addEventListener('click', function (event) {
 	if (event.target.matches('.todo-task-checkbox')) {
                 if(event.target.checked === true) {
@@ -159,6 +159,20 @@ todoList.addEventListener('click', function (event) {
                 setTimeout(() => {
                         event.target.parentNode.parentNode.remove();
                       }, 420);
+                const findLul = document.querySelectorAll(".remove-btn-img")
+                let targetLul = event.target;
+                let list_items = Array.from(findLul);
+                indexOfDiv = list_items.indexOf(targetLul);
+                findLul.forEach( e => {
+                        let targetLulLul = e;
+                        let list_itemsLul = Array.from(findLul);
+                        let indexOfDivLulLul = list_itemsLul.indexOf(targetLulLul);
+                        if(indexOfDivLulLul > indexOfDiv) {
+                                targetLulLul.parentNode.parentNode.dataset.id = Number(targetLulLul.parentNode.parentNode.dataset.id) - 1;
+                        }
+                })
+                const todoTaskItemCounter = document.querySelectorAll(".todo-task")
+                indexCount = todoTaskItemCounter.length;
         }
 })
 taskFilter.addEventListener('click', function (event) {
@@ -212,10 +226,8 @@ document.addEventListener('click', function (event) {
                 }    
         }
 })
+let indexCount = todoTaskItem.length + 1;
 createToDo.addEventListener('click', () => {
-        if(!completedTask.classList.contains('active')) {
-                console.log("lullulul")
-        }
         setTimeout(() => {
                 createToDo.checked = false;
               }, 100);
@@ -225,6 +237,8 @@ createToDo.addEventListener('click', () => {
         appendTask.classList.add("todo-task");
         appendTask.classList.add("bottom-border");
         appendTask.classList.add("not-completed");
+        appendTask.setAttribute("data-id", `${indexCount}`);
+        appendTask.setAttribute("draggable", "true");
         if((taskTitle !== '') && (lightThemeIcon.classList.contains('hidden')) && (!completedTask.classList.contains('active'))) {
                 appendTask.innerHTML += `
                         <div class="checkbox-wrapper">
@@ -236,6 +250,8 @@ createToDo.addEventListener('click', () => {
                         </button>
                 `;
                 todoList.appendChild(appendTask);
+                const todoTaskItemCounter = document.querySelectorAll(".todo-task")
+                indexCount = todoTaskItemCounter.length + 1;
         } else if(taskTitle !== '' && darkThemeIcon.classList.contains("hidden") && (!completedTask.classList.contains('active'))) {
                 appendTask.classList.add("bottom-border-dark");
                 appendTask.innerHTML += `
@@ -248,6 +264,8 @@ createToDo.addEventListener('click', () => {
                         </button>
                 `;
                 todoList.appendChild(appendTask);
+                const todoTaskItemCounter = document.querySelectorAll(".todo-task")
+                indexCount = todoTaskItemCounter.length + 1;
         }
 })
 document.addEventListener('keypress', (e) => {
@@ -258,6 +276,8 @@ document.addEventListener('keypress', (e) => {
                 appendTask.classList.add("todo-task");
                 appendTask.classList.add("bottom-border");
                 appendTask.classList.add("not-completed");
+                appendTask.setAttribute("data-id", `${indexCount}`);
+                appendTask.setAttribute("draggable", "true");
                 if((taskTitle !== '') && (lightThemeIcon.classList.contains('hidden')) && (!completedTask.classList.contains('active'))) {
                         appendTask.innerHTML += `
                                 <div class="checkbox-wrapper">
@@ -269,6 +289,8 @@ document.addEventListener('keypress', (e) => {
                                 </button>
                         `;
                         todoList.appendChild(appendTask);
+                        const todoTaskItemCounter = document.querySelectorAll(".todo-task")
+                        indexCount = todoTaskItemCounter.length + 1;
                 } else if(taskTitle !== '' && darkThemeIcon.classList.contains("hidden") && (!completedTask.classList.contains('active'))) {
                         appendTask.classList.add("bottom-border-dark");
                         appendTask.innerHTML += `
@@ -281,6 +303,73 @@ document.addEventListener('keypress', (e) => {
                                 </button>
                         `;
                         todoList.appendChild(appendTask);
+                        const todoTaskItemCounter = document.querySelectorAll(".todo-task")
+                        indexCount = todoTaskItemCounter.length + 1;
                 } 
         }
 })
+let itemOne;
+let itemTwo;
+document.addEventListener('dragstart', function (event) {
+	if (event.target.matches('.todo-task')) {
+                itemOne = event.target;
+        }
+})
+
+document.addEventListener('dragenter', function (event) {
+	if (event.target.matches('.todo-task')) {
+                if(lightThemeIcon.classList.contains('hidden')) {
+                        event.target.classList.add("over");
+                }
+                if(darkThemeIcon.classList.contains("hidden")) {
+                        event.target.classList.add("over-dark");
+                }
+        }
+})
+
+document.addEventListener('dragleave', function (event) {
+	if (event.target.matches('.todo-task')) {
+                event.target.classList.remove("over");
+                event.target.classList.remove("over-dark");
+        }
+})
+
+document.addEventListener('dragover', function (event) {
+	if (event.target.matches('.todo-task')) {
+                event.preventDefault();
+        }
+})
+
+document.addEventListener('drop', function (event) {
+	if (event.target.matches('.todo-task')) {
+                itemTwo = event.target;
+                insertAfter();
+
+                event.target.classList.remove("over");
+                event.target.classList.remove("over-dark");
+                
+        }
+})
+
+function insertAfter() {
+        let itemOneId;
+        let itemTwoId;
+        console.log(itemOne, itemTwo);
+        // if(Number(itemOne.getAttribute("data-id")) > Number(itemTwo.getAttribute("data-id"))) {
+                // itemOneId = itemTwo.dataset.id;
+                // itemTwoId = itemOne.dataset.id;
+                // console.log(itemOneId, itemTwoId)
+                // itemOne.dataset.id = itemTwoId;
+                // itemTwo.setAttribute("data-id", `${itemOneId}`)
+                // itemTwo.dataset.id = itemOneId;
+                // itemOne.dataset.id = itemTwoId;
+                itemTwo.after(itemOne);
+        // } 
+        // else if (Number(itemOne.getAttribute("data-id")) < Number(itemTwo.getAttribute("data-id"))) {
+        //         itemOneId = Number(itemOne.getAttribute("data-id"));
+        //         itemTwoId = Number(itemTwo.getAttribute("data-id"));
+        //         itemOne.setAttribute("data-id", `${itemTwoId}`)
+        //         itemTwo.setAttribute("data-id", `${itemOneId}`)
+        //         itemOne.after(itemTwo);
+        // }
+}

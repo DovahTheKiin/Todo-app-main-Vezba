@@ -324,6 +324,12 @@ input[type='text']::placeholder {
 .hidden {
     display: none;
 }
+.over {
+    background-color: var(--light-theme-gray-100);
+}
+.over-dark {
+    background-color: var(--dark-theme-gray-600);
+}
 
 /* DARK MODE MOBILE */
 
