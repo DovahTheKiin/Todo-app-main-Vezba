@@ -221,6 +221,12 @@ document.addEventListener('click', function (event) {
                                 todoTaskItemNew[i].classList.add("hidden-animation");
                                 setTimeout(() => {
                                         todoTaskItemNew[i].remove();
+                                        const findLul = document.querySelectorAll(".todo-task")
+                                        findLul.forEach( item => {
+                                                let list_itemsLul = Array.from(findLul);
+                                                let indexOfDivLulLul = list_itemsLul.indexOf(item);
+                                                item.dataset.id = +indexOfDivLulLul + 1;
+                                        })
                                 }, 420);
                         }
                 }    
@@ -311,13 +317,27 @@ document.addEventListener('keypress', (e) => {
 let itemOne;
 let itemTwo;
 document.addEventListener('dragstart', function (event) {
-	if (event.target.matches('.todo-task')) {
+        if (event.target.matches('.todo-task')) {
                 itemOne = event.target;
+                itemOne.classList.add("being-dragged")
         }
 })
 
 document.addEventListener('dragenter', function (event) {
-	if (event.target.matches('.todo-task')) {
+        if (event.target.matches('.todo-task')) {
+                if(itemOne.dataset.id < event.target.dataset.id) {
+                        event.target.after(itemOne);
+                        let firstID = itemOne.dataset.id;
+                        let secondID = event.target.dataset.id;
+                        event.target.dataset.id = firstID;
+                        itemOne.dataset.id = secondID;
+                } else if (itemOne.dataset.id > event.target.dataset.id) {
+                        event.target.before(itemOne);
+                        let firstID = itemOne.dataset.id;
+                        let secondID = event.target.dataset.id;
+                        event.target.dataset.id = firstID;
+                        itemOne.dataset.id = secondID;
+                }
                 if(lightThemeIcon.classList.contains('hidden')) {
                         event.target.classList.add("over");
                 }
@@ -328,48 +348,25 @@ document.addEventListener('dragenter', function (event) {
 })
 
 document.addEventListener('dragleave', function (event) {
-	if (event.target.matches('.todo-task')) {
+        if (event.target.matches('.todo-task')) {
                 event.target.classList.remove("over");
                 event.target.classList.remove("over-dark");
         }
 })
 
 document.addEventListener('dragover', function (event) {
-	if (event.target.matches('.todo-task')) {
+        if (event.target.matches('.todo-task')) {
                 event.preventDefault();
         }
 })
 
 document.addEventListener('drop', function (event) {
-	if (event.target.matches('.todo-task')) {
+        if (event.target.matches('.todo-task')) {
+                itemOne.classList.remove("being-dragged")
                 itemTwo = event.target;
-                insertAfter();
 
                 event.target.classList.remove("over");
                 event.target.classList.remove("over-dark");
                 
         }
 })
-
-function insertAfter() {
-        let itemOneId;
-        let itemTwoId;
-        console.log(itemOne, itemTwo);
-        // if(Number(itemOne.getAttribute("data-id")) > Number(itemTwo.getAttribute("data-id"))) {
-                // itemOneId = itemTwo.dataset.id;
-                // itemTwoId = itemOne.dataset.id;
-                // console.log(itemOneId, itemTwoId)
-                // itemOne.dataset.id = itemTwoId;
-                // itemTwo.setAttribute("data-id", `${itemOneId}`)
-                // itemTwo.dataset.id = itemOneId;
-                // itemOne.dataset.id = itemTwoId;
-                itemTwo.after(itemOne);
-        // } 
-        // else if (Number(itemOne.getAttribute("data-id")) < Number(itemTwo.getAttribute("data-id"))) {
-        //         itemOneId = Number(itemOne.getAttribute("data-id"));
-        //         itemTwoId = Number(itemTwo.getAttribute("data-id"));
-        //         itemOne.setAttribute("data-id", `${itemTwoId}`)
-        //         itemTwo.setAttribute("data-id", `${itemOneId}`)
-        //         itemOne.after(itemTwo);
-        // }
-}

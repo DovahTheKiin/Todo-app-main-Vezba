@@ -155,6 +155,7 @@ input[type='text']::placeholder {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.1rem;
+    /* touch-action: none !important; */
 }
 .todo-task-description {
     margin-right: auto;
