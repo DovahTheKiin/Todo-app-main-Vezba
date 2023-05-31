@@ -253,7 +253,7 @@ input[type='text']::placeholder {
         display: none;
     }
     .remove-task-btn {
-        /* visibility: hidden; */
+        visibility: hidden;
         cursor: pointer;
     }
     .create-task {

@@ -50,7 +50,27 @@ document.addEventListener('mouseover', function (event) {
         if (event.target.matches('.todo-task')) {
                 const todoTask = event.target.querySelector(".remove-task-btn")
                 todoTask.classList.add("visible");
-        } 
+        }
+        if (event.target.matches('.checkbox-wrapper')) {
+                const todoTask = event.target.parentNode.querySelector(".remove-task-btn")
+                todoTask.classList.add("visible");
+        }
+        if (event.target.matches('.todo-task-checkbox')) {
+                const todoTask = event.target.parentNode.parentNode.querySelector(".remove-task-btn")
+                todoTask.classList.add("visible");
+        }
+        if (event.target.matches('.todo-task-description')) {
+                const todoTask = event.target.parentNode.querySelector(".remove-task-btn")
+                todoTask.classList.add("visible");
+        }
+        if (event.target.matches('.remove-task-btn')) {
+                const todoTask = event.target.parentNode.querySelector(".remove-task-btn")
+                todoTask.classList.add("visible");
+        }
+        if (event.target.matches('.remove-btn-img')) {
+                const todoTask = event.target.parentNode.parentNode.querySelector(".remove-task-btn")
+                todoTask.classList.add("visible");
+        }
 })
 document.addEventListener('mouseout', function (event) {
         if (event.target.matches('.todo-task')) {
@@ -322,7 +342,6 @@ document.addEventListener('dragstart', function (event) {
                 itemOne.classList.add("being-dragged")
         }
 })
-
 document.addEventListener('dragenter', function (event) {
         if (event.target.matches('.todo-task')) {
                 if(itemOne.dataset.id < event.target.dataset.id) {
@@ -346,20 +365,18 @@ document.addEventListener('dragenter', function (event) {
                 }
         }
 })
-
 document.addEventListener('dragleave', function (event) {
         if (event.target.matches('.todo-task')) {
                 event.target.classList.remove("over");
                 event.target.classList.remove("over-dark");
         }
 })
-
 document.addEventListener('dragover', function (event) {
         if (event.target.matches('.todo-task')) {
                 event.preventDefault();
         }
 })
-
+let el;
 document.addEventListener('drop', function (event) {
         if (event.target.matches('.todo-task')) {
                 itemOne.classList.remove("being-dragged")
